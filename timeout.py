@@ -1,18 +1,16 @@
-import time
-
-from bs4 import BeautifulSoup
-import requests
-
-import constants
-
 import logging
 import sys
+import time
 
-import mailer
-from config import LOG_LEVEL, OUTPUT_FILE, SEND_EMAIL, RECIPIENT, SENDER_EMAIL, SENDER_PASSWORD
-from utils.dates import month_name_after_n_months
-
+import requests
+from bs4 import BeautifulSoup
 from jinja2 import Environment, PackageLoader, select_autoescape
+
+import constants
+import mailer
+from config import (LOG_LEVEL, OUTPUT_FILE, RECIPIENT, SEND_EMAIL,
+                    SENDER_EMAIL, SENDER_PASSWORD)
+from utils.dates import month_name_after_n_months
 
 logging.basicConfig(stream=sys.stdout, level=LOG_LEVEL)
 logging.getLogger('urllib3').setLevel(LOG_LEVEL)
@@ -65,6 +63,7 @@ def format_entry_items(title, description):
     if description:
         description_template = template_env.get_template(constants.DESCRIPTION_TEMPLATE)
         entry_content += description_template.render(description=description)
+
     return entry_content
 
 
@@ -102,7 +101,6 @@ if __name__ == '__main__':
         ('Next month', monthly_url(1)),
     ]:
         logging.debug('Processing ' + section)
-        logging.debug(url)
         content += extract_content_from_timeout_url(section, url)
 
     template = template_env.get_template(constants.EMAIL_TEMPLATE)
@@ -121,6 +119,7 @@ if __name__ == '__main__':
             )
 
             logging.debug('Email sent')
+
     finally:
         with open(OUTPUT_FILE, 'w') as f:
             f.write(email_content.encode('utf-8'))

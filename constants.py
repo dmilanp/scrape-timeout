@@ -1,6 +1,5 @@
 from __future__ import absolute_import, unicode_literals
 
-
 FRIDAY = "https://www.timeout.com/london/things-to-do/things-to-do-in-london-on-a-friday"
 SATURDAY = "https://www.timeout.com/london/things-to-do/things-to-do-in-london-on-a-saturday"
 SUNDAY = "https://www.timeout.com/london/things-to-do/things-to-do-in-london-on-a-sunday"
