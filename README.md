@@ -1,5 +1,6 @@
 # Quick Timeout Scrape
-![Sample](screen.png | width=100)
+<img src="screen.png" width="300">
+
 ## Usage
 ```
 python timeout.py
